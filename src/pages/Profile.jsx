@@ -3,6 +3,7 @@ import { React, useEffect, useState } from "react";
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
+import TextField from "../components/Inputs/TextField";
 
 
 import Logo from "../images/profile.jpg"
@@ -11,8 +12,8 @@ import '../styles/pages/profile.css'
 
 export default function Profile() {
     const [editing, setEditing] = useState(false)
+    const [info, setInfo] = useState(undefined)
     const [loaded, setLoaded] = useState(false)
-    const [info, setInfo] = useState()
 
     /*const info = {
         name: 'Paulo Vareiro',
@@ -27,25 +28,56 @@ export default function Profile() {
 
     //make this only do once
     useEffect(() => {
-        if(!loaded){
-            fetch("http://localhost/projeto-backend/user/2", { method: "GET", headers: { "content-type": "application/json" }, mode: 'cors' })
-            .then(res => res.json())
-            .then((result) => {
-                console.log(result)
-                setInfo(result)
-                setLoaded(true)
-            })
+        if (!loaded) {
+            fetch("http://localhost/projeto-backend/user/1", { method: "GET", headers: { "content-type": "application/json" }, mode: 'cors' })
+                .then(res => res.json())
+                .then((result) => {
+                    if (info === undefined)
+                        setInfo(result)
+                    setLoaded(true)
+                })
         }
     });
-    
+
 
 
 
     const editButtonClick = () => {
-        setEditing(!editing)
+        setEditing(true)
     }
 
-    if(!loaded) return <h1>Loading</h1>
+    const saveEdit = (e) => {
+        e.preventDefault()
+        
+        console.log(e.target.nome.value)
+        console.log(e.target.email.value)
+        console.log(e.target.morada.value)
+
+        fetch("http://localhost/projeto-backend/user/1",
+            {
+                method: "PUT",
+                headers: { "content-type": "text/json" },
+                body: {
+                    "username": info.username,
+                    "pass": info.password,
+                    "nome": e.target.nome.value,
+                    "morada": e.target.morada.value,
+                    "email": e.target.email.value,
+                    "admin": info.roles.admin,
+                    "atleta": info.roles.atleta,
+                    "treinador": info.roles.treinador
+                },
+                mode: 'cors'
+            })
+            .then(res => res.text())
+            .then((result) => {
+                console.log(result)
+            })
+            setLoaded(false)
+            setEditing(false)
+    }
+
+    if (info === undefined) return <h1>Loading</h1>
 
     return (
         <div id="profile">
@@ -76,31 +108,64 @@ export default function Profile() {
 
 
                     <div className="profile-edit-info">
-                        <Button onClick={editButtonClick} title="Edit profile" size={15} type={"secondary"} bold />
+                        {!editing
+                            ? <Button onClick={editButtonClick} title="Edit profile" size={15} styleType={"secondary"} bold />
+                            : null}
                     </div>
                 </div>
 
             </div>
 
             <div className="profile-content">
-                <Card title="Informação">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Nome</th>
-                                <td>{info.nome}</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td>{info.email}</td>
-                            </tr>
-                            <tr>
-                                <th>Morada</th>
-                                <td>{info.address}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </Card>
+                {
+                    editing
+                        ? <Card title={<>Informação</>} >
+                            <form onSubmit={saveEdit}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <td><TextField value={info.nome} placeholder="Nome" name="nome" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th>
+                                            <td><TextField value={info.email} placeholder="Email" name="email" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Morada</th>
+                                            <td><TextField value={info.morada} placeholder="Morada" name="morada" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <td><Button onSubmit={saveEdit} type="submit" title="Guardar" size={15} styleType={"secondary"} bold /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </Card>
+
+
+                        : <Card title={"Informação"}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <td>{info.nome}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>{info.email}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Morada</th>
+                                        <td>{info.morada}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </Card>
+                }
+
 
             </div>
         </div>
