@@ -1,0 +1,23 @@
+#landing-page {
+    width: 100vw;
+    height: 100vh;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#landing-page .content-wrapper {
+    position: relative;
+    
+    width: 100%;
+    max-width: 1100px;
+    
+    height: 100%;
+    max-height: 680px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

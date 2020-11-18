@@ -5,10 +5,16 @@
 }
 
 body {
-    color: #FFF;
-    background-color: #ebf2f5;
+    color: #FFFFFF;
+    
+    background: rgb(49,49,49);
+    background: linear-gradient(90deg, rgba(49,49,49,1) 0%, rgba(83,83,83,1) 100%);
 }
 
 body, input, button, textarea {
-    font: 600 18px Nunito, sans-serif;
+    font: 18px  "Roboto", sans-serif;
+}
+
+table {
+    text-align: left;
 }

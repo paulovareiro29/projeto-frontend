@@ -1,0 +1,32 @@
+.btn {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 15px;
+
+    color: #ffffff;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn.primary {
+    background: #0088ff;
+    color: #ffffff;
+}
+
+.btn.primary:hover, .btn.primary:focus { 
+    background: #0079e2;
+    color: #e4e4e4;
+}
+
+.btn.secondary {
+    background: #C0C0C0;
+    color: #ffffff;
+}
+
+.btn.secondary:hover, .btn.secondary:focus { 
+    background: #999999;
+    color: #ffffff;
+}
