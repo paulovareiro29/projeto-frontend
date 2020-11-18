@@ -1,0 +1,91 @@
+#profile {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*HEADER */
+#profile .profile-header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+#profile .profile-header .profile-background{
+    background: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    height: 150px;
+}
+
+#profile .profile-header .profile-info-wrapper{
+    display: flex;
+    align-content: center;
+}
+
+#profile .profile-header .profile-info-wrapper .profile-photo {
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+
+    overflow: hidden;
+
+    margin-left: 20px;
+    margin-top: -105px;
+
+    width: 200px;
+    height: 200px;
+}
+
+#profile .profile-header .profile-info-wrapper .profile-photo img{
+    width: 100%;
+    height: 100%;
+}
+
+#profile .profile-header .profile-info{
+    padding: 10px;
+}
+
+
+#profile .profile-header .profile-info-wrapper .profile-edit-info{
+    flex-grow: 1;
+
+    padding: 10px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#profile .profile-header .profile-info .profile-info-name{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+#profile .profile-header .profile-info .profile-info-email{
+    font-size: 18px;
+    color: #cacaca;
+}
+
+#profile .profile-header .profile-info .profile-info-roles{
+    padding-top: 10px;
+    font-size: 14px;
+}
+/*CONTENT*/
+
+#profile .profile-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    padding: 20px;
+}
+
+
+
+
+
+/* TABLE */
+table th {
+    padding-right: 10px;
+}

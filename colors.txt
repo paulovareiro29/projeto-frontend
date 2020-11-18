@@ -1,0 +1,5 @@
+Primary: #0088ff;
+    hover: #0079e2;
+
+Secondary: #C0C0C0;
+    hover: #999999;

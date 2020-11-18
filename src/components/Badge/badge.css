@@ -1,0 +1,16 @@
+.badge {
+    cursor: default;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 2px;
+}
+
+.badge.primary {
+    background: #0088ff;
+    color: #ffffff;
+}
+
+.badge.secondary {
+    background: #C0C0C0;
+    color: #ffffff;
+}

@@ -1,0 +1,21 @@
+#app {
+    height: 100vh;
+    display: flex;
+}
+
+#app .side{
+    width: 270px;
+    min-width: 270px;
+}
+
+#app .content-wrapper { 
+    width: 100%;
+
+    padding: 10px;
+}
+
+#app .content-wrapper .content {
+    
+    height: fit-content;
+    min-height: 100%;
+}
