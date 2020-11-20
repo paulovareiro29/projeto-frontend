@@ -34,7 +34,12 @@
     margin-top: -105px;
 
     width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+
     height: 200px;
+    max-height: 200px;
+    min-height: 200px;
 }
 
 #profile .profile-header .profile-info-wrapper .profile-photo img{
@@ -43,6 +48,8 @@
 }
 
 #profile .profile-header .profile-info{
+    overflow: hidden;
+    flex-grow: 1;
     padding: 10px;
 }
 

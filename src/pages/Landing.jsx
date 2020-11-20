@@ -1,5 +1,7 @@
 import React from 'react';
 import Auth from '../components/Auth';
+import Button from '../components/Button/Button';
+import TextField from '../components/Inputs/TextField';
 
 
 
@@ -7,16 +9,28 @@ import '../styles/pages/landing.css';
 
 
 function Landing(props) {
+
+    const handleLogin = (e) => {
+        e.preventDefault()
+        if(Auth.login(e.target.username.value, e.target.password.value))
+            props.history.push('/app')
+        
+    }
+
     return (
         <div id="landing-page">
             <div className="content-wrapper">
-                Landing Page
-                <button onClick={
-                    () => {
-                        Auth.login()
-                        props.history.push('/app')
-                    }
-                }>Go to App</button>
+                <form onSubmit={handleLogin}>
+                    <div className="form-control">
+                        <TextField name="username" placeholder="Username" required/>
+                    </div>
+                    <div className="form-control">
+                        <TextField name="password" placeholder="Password" required/>
+                    </div>
+                    <div className="form-control">
+                        <Button onSubmit={handleLogin} title="Log in" expanded/>
+                    </div>
+                </form>
             </div>
         </div>
 

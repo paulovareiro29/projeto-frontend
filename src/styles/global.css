@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
+html {
+    
+    /*background: linear-gradient(90deg, rgba(49,49,49,1) 0%, rgba(83,83,83,1) 100%);*/
+    background: rgb(49,49,49);
+}
+
 body {
     color: #FFFFFF;
-    
-    background: rgb(49,49,49);
-    background: linear-gradient(90deg, rgba(49,49,49,1) 0%, rgba(83,83,83,1) 100%);
 }
 
 body, input, button, textarea {

@@ -3,12 +3,11 @@ import { React, useState } from "react";
 import './input.css'
 
 export default function TextField({
-    placeholder,
     value,
     ...rest
 }) {
 
-    const [currentValue, setCurrentValue] = useState(value)
+    const [currentValue, setCurrentValue] = useState(value ? value : '')
 
     const handleChange = (e) => {
         setCurrentValue(e.target.value)

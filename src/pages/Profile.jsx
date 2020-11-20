@@ -13,34 +13,25 @@ import '../styles/pages/profile.css'
 export default function Profile() {
     const [editing, setEditing] = useState(false)
     const [info, setInfo] = useState(undefined)
-    const [loaded, setLoaded] = useState(false)
 
-    /*const info = {
-        name: 'Paulo Vareiro',
-        email: 'paulovareiro29@gmail.com',
-        address: 'Rua 31 de janeiro 193 1º andar',
-        roles: {
-            atleta: true,
-            treinador: true,
-            admin: true
-        }
-    }*/
+    const [refresh, setRefresh] = useState(false)
 
-    //make this only do once
     useEffect(() => {
-        if (!loaded) {
-            fetch("http://localhost/projeto-backend/user/1", { method: "GET", headers: { "content-type": "application/json" }, mode: 'cors' })
+        if (info === undefined || refresh === true) {
+            fetch("http://localhost/projeto-backend/user/1",
+                {
+                    method: "GET",
+                    headers: { "content-type": "application/json" },
+                    mode: 'cors'
+                })
                 .then(res => res.json())
                 .then((result) => {
-                    if (info === undefined)
-                        setInfo(result)
-                    setLoaded(true)
+                    setInfo(result)
+                    if(refresh === true) setRefresh(false)
                 })
+            
         }
     });
-
-
-
 
     const editButtonClick = () => {
         setEditing(true)
@@ -48,16 +39,13 @@ export default function Profile() {
 
     const saveEdit = (e) => {
         e.preventDefault()
-        
-        console.log(e.target.nome.value)
-        console.log(e.target.email.value)
-        console.log(e.target.morada.value)
 
+        //atribuir ID
         fetch("http://localhost/projeto-backend/user/1",
             {
                 method: "PUT",
-                headers: { "content-type": "text/json" },
-                body: {
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
                     "username": info.username,
                     "pass": info.password,
                     "nome": e.target.nome.value,
@@ -66,15 +54,12 @@ export default function Profile() {
                     "admin": info.roles.admin,
                     "atleta": info.roles.atleta,
                     "treinador": info.roles.treinador
-                },
+                }),
                 mode: 'cors'
             })
-            .then(res => res.text())
-            .then((result) => {
-                console.log(result)
-            })
-            setLoaded(false)
-            setEditing(false)
+
+        setRefresh(true)
+        setEditing(false)
     }
 
     if (info === undefined) return <h1>Loading</h1>
@@ -125,7 +110,7 @@ export default function Profile() {
                                     <tbody>
                                         <tr>
                                             <th>Nome</th>
-                                            <td><TextField value={info.nome} placeholder="Nome" name="nome" /></td>
+                                            <td><TextField maxLength={50} value={info.nome} placeholder="Nome" name="nome" /></td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
