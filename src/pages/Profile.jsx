@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react";
+import Auth from "../components/Auth";
 
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
@@ -17,37 +18,46 @@ export default function Profile() {
     const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
+        console.log(Auth.getToken())
         if (info === undefined || refresh === true) {
-            fetch("http://localhost/projeto-backend/user/1",
-                {
-                    method: "GET",
-                    headers: { "content-type": "application/json" },
-                    mode: 'cors'
-                })
-                .then(res => res.json())
-                .then((result) => {
-                    setInfo(result)
-                    if(refresh === true) setRefresh(false)
-                })
-            
+            fetchData()
         }
+
+
+
     });
+
+    const fetchData = async () => {
+        
+        await fetch(`http://localhost/projeto-backend/user/token/${Auth.getToken()}`,
+            {
+                method: "GET",
+                headers: { "content-type": "application/json" },
+                mode: 'cors'
+            })
+            .then(res => res.json())
+            .then((result) => {
+                setInfo(result)
+                if (refresh === true) setRefresh(false)
+            })
+    }
 
     const editButtonClick = () => {
         setEditing(true)
     }
 
-    const saveEdit = (e) => {
+    const saveEdit = async (e) => {
         e.preventDefault()
 
+
         //atribuir ID
-        fetch("http://localhost/projeto-backend/user/1",
+        await fetch(`http://localhost/projeto-backend/user/token/${Auth.getToken()}`,
             {
                 method: "PUT",
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify({
-                    "username": info.username,
-                    "pass": info.password,
+                    //"username": info.username,
+                    //"pass": info.password,
                     "nome": e.target.nome.value,
                     "morada": e.target.morada.value,
                     "email": e.target.email.value,
@@ -57,12 +67,16 @@ export default function Profile() {
                 }),
                 mode: 'cors'
             })
+            .then(res => res.json())
+            .then((res) => {
+                console.log(res)
+            })
 
         setRefresh(true)
         setEditing(false)
     }
 
-    if (info === undefined) return <h1>Loading</h1>
+    if (info === undefined || refresh) return <h1>Loading</h1>
 
     return (
         <div id="profile">

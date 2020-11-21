@@ -1,74 +1,78 @@
-import { React, useState } from 'react';
+import { getByTestId } from '@testing-library/react';
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
 
 class Auth {
-    
-    login(username, password) {
 
-        if(!username|| !password ){
+    async login(username, password) {
+
+        if (!username || !password) {
             console.log("Fields cannot be empty")
             return false;
         }
-            
-        fetch("http://localhost/projeto-backend/login",
-        {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-                "username": username,
-                "pass": password,
-            }),
-            mode: 'cors'
-        })
-        .then(res => res.json())
-        .then((response) =>{
-            if(response.token)
-                this.setState({token: response.token})
-                console.log(this.state.token)
-        })
 
-        console.log(this.state.token)
+        await fetch("http://localhost/projeto-backend/login",
+            {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    "username": username,
+                    "pass": password,
+                }),
+                mode: 'cors'
+            })
+            .then(res => res.json())
+            .then((response) => {
+                if (response.token) {
+                    cookies.set('access_token', response.token)
+                    console.log(this.getToken())
+                    return true
+                }
+                return false
+            })
 
-        if(this.state.token){
-            
-            cookies.set('access_token',this.state.token)
+        if (this.getToken())
             return true
-        }
+
         return false
     }
 
-    logout(){
+    logout() {
         cookies.remove('access_token')
         return true
     }
 
-    getToken(){
-        return cookies.get('access_token')
+    async getToken() {
+        const get = async () => {
+            return cookies.get('access_token')
+        }
+
+        const cookie = await get() 
+        return cookie
     }
 
-    isLoggedIn(){
-        if(this.getToken() === undefined)
+    isLoggedIn() {
+        if (this.getToken() === undefined)
             return false
 
         return true
     }
 
-    isAtleta(){
+    isAtleta() {
         return true
     }
 
-    isTreinador(){
-        return true
-    }
-    
-    isAdmin(){
+    isTreinador() {
         return true
     }
 
-    isAny(){
+    isAdmin() {
+        return true
+    }
+
+    isAny() {
         return (this.isAdmin() || this.isAtleta() || this.isTreinador())
     }
 

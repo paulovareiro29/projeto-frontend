@@ -10,9 +10,9 @@ import '../styles/pages/landing.css';
 
 function Landing(props) {
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
-        if(Auth.login(e.target.username.value, e.target.password.value))
+        if(await Auth.login(e.target.username.value, e.target.password.value))
             props.history.push('/app')
         
     }
