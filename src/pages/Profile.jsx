@@ -4,7 +4,7 @@ import Auth from "../components/Auth";
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
-import TextField from "../components/Inputs/TextField";
+import Input from "../components/Inputs/Input";
 
 
 import Logo from "../images/profile.jpg"
@@ -18,13 +18,9 @@ export default function Profile() {
     const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
-        console.log(Auth.getToken())
         if (info === undefined || refresh === true) {
             fetchData()
         }
-
-
-
     });
 
     const fetchData = async () => {
@@ -67,10 +63,10 @@ export default function Profile() {
                 }),
                 mode: 'cors'
             })
-            .then(res => res.json())
+            /*.then(res => res.json())
             .then((res) => {
                 console.log(res)
-            })
+            })*/
 
         setRefresh(true)
         setEditing(false)
@@ -124,15 +120,15 @@ export default function Profile() {
                                     <tbody>
                                         <tr>
                                             <th>Nome</th>
-                                            <td><TextField maxLength={50} value={info.nome} placeholder="Nome" name="nome" /></td>
+                                            <td><Input maxLength={50} value={info.nome} placeholder="Nome" name="nome" /></td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td><TextField value={info.email} placeholder="Email" name="email" /></td>
+                                            <td><Input value={info.email} placeholder="Email" name="email" /></td>
                                         </tr>
                                         <tr>
                                             <th>Morada</th>
-                                            <td><TextField value={info.morada} placeholder="Morada" name="morada" /></td>
+                                            <td><Input value={info.morada} placeholder="Morada" name="morada" /></td>
                                         </tr>
                                         <tr>
                                             <th></th>

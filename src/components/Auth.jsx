@@ -1,10 +1,14 @@
-import { getByTestId } from '@testing-library/react';
+import { Component } from 'react'
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
 
-class Auth {
+class Auth extends Component{
+    constructor() {
+        super()
+        this.state = {token: undefined}
+    }
 
     async login(username, password) {
 
@@ -26,16 +30,19 @@ class Auth {
             .then(res => res.json())
             .then((response) => {
                 if (response.token) {
-                    cookies.set('access_token', response.token)
-                    console.log(this.getToken())
+                    this.setToken(response.token)
                     return true
                 }
                 return false
             })
 
-        if (this.getToken())
-            return true
+        let token = this.getToken()
 
+        console.log(token)
+
+        if (token !== undefined)
+            return true
+        
         return false
     }
 
@@ -44,14 +51,15 @@ class Auth {
         return true
     }
 
-    async getToken() {
-        const get = async () => {
-            return cookies.get('access_token')
-        }
-
-        const cookie = await get() 
-        return cookie
+    getToken() {
+        const token = cookies.get('access_token')
+        return token
     }
+
+    setToken(token) {
+        cookies.set('access_token', token)
+    }
+
 
     isLoggedIn() {
         if (this.getToken() === undefined)
