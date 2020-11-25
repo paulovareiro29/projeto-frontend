@@ -12,11 +12,6 @@ class Auth extends Component{
 
     async login(username, password) {
 
-        if (!username || !password) {
-            console.log("Fields cannot be empty")
-            return false;
-        }
-
         await fetch("http://localhost/projeto-backend/login",
             {
                 method: "POST",
@@ -29,35 +24,31 @@ class Auth extends Component{
             })
             .then(res => res.json())
             .then((response) => {
-                if (response.token) {
+                if (response.token){
                     this.setToken(response.token)
-                    return true
+                    console.log("Logged in: token = " + response.token)
                 }
-                return false
+                    
             })
-
-        let token = this.getToken()
-
-        console.log(token)
-
-        if (token !== undefined)
-            return true
         
-        return false
+        
     }
 
     logout() {
         cookies.remove('access_token')
+        console.log("Logged out: token = undefined")
         return true
     }
 
     getToken() {
         const token = cookies.get('access_token')
+        console.log("GetToken: token = " + token)
         return token
     }
 
     setToken(token) {
         cookies.set('access_token', token)
+        console.log("SetToken: token = " + token)
     }
 
 

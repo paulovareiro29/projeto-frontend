@@ -21,3 +21,10 @@
     justify-content: center;
     align-items: center;
 }
+
+#landing-page .content-wrapper .landing-page-title{
+    font-size: 30px;
+    font-weight: 200;
+
+    margin-bottom: 20px;
+}

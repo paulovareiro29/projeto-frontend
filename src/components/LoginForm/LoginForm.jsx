@@ -1,36 +1,45 @@
-import { React } from "react";
+import { React, useState } from "react";
+import Auth from "../Auth";
+import Form from "../Form/Form";
+import Input from "../Inputs/Input";
 
-import Button from "../Button/Button";
-import TextField from "../Inputs/Input";
-
+import './loginform.css'
 
 export default function LoginForm(props) {
 
-    const validateForm = (form) => {
-        console.log(form.username.value +"  " + form.password.value)
-    }
+    const [wrongInfo, setWrongInfo] = useState(false)
 
-    const handleLogin = async (e) => {
-        e.preventDefault()
+    const onSubmit = async (e) => {
+        await Auth.login(e.username, e.password)
 
-        validateForm(e.target)
-
-        /*if(await Auth.login(e.target.username.value, e.target.password.value))
-            props.history.push('/app')*/
-        
+        if (Auth.getToken()) {
+            props.history.push('/app')
+        } else {
+            setWrongInfo(true)
+        }
     }
 
     return (
-        <form onSubmit={handleLogin}>
-            <div className="form-control">
-                <TextField name="username" placeholder="Username" required/>
+        <div className="login-form">
+            <div className={"error-info " + (wrongInfo ? '' : 'hidden')}>
+                <span>Username ou password errada</span>
             </div>
-            <div className="form-control">
-                <TextField name="password" placeholder="Password" />
+            <div className="form">
+                <Form submitBtnName="Log in" onSubmit={onSubmit}>
+
+                    <Input type="text" name="username" placeholder="Username" rules={
+                        {
+                            required: "This is required"
+                        }
+                    } />
+                    <Input type="password" name="password" placeholder="Password" rules={
+                        {
+                            required: "This is required"
+                        }
+                    } />
+                </Form>
             </div>
-            <div className="form-control">
-                <Button onSubmit={handleLogin} title="Log in" expanded />
-            </div>
-        </form>
+
+        </div>
     )
 }

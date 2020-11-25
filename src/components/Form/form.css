@@ -1,0 +1,7 @@
+.form-component .form-control {
+    margin: 5px 0px;
+}
+
+.form-component  .form-control.submit-btn{
+    margin: 15px 0px 0px 0px;
+}

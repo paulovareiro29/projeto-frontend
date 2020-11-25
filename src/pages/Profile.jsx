@@ -4,6 +4,7 @@ import Auth from "../components/Auth";
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
+import Form from "../components/Form/Form";
 import Input from "../components/Inputs/Input";
 
 
@@ -115,7 +116,7 @@ export default function Profile() {
                 {
                     editing
                         ? <Card title={<>Informação</>} >
-                            <form onSubmit={saveEdit}>
+                            <Form onSubmit={saveEdit}>
                                 <table>
                                     <tbody>
                                         <tr>
@@ -137,7 +138,7 @@ export default function Profile() {
                                     </tbody>
                                 </table>
 
-                            </form>
+                            </Form>
                         </Card>
 
 

@@ -2,16 +2,17 @@ import { cloneElement, React, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../Button/Button";
 
+import './form.css'
 
-export default function Form({ onSubmit,submitBtnName, children }) {
+export default function Form({ onSubmit, submitBtnName, children }) {
 
     onSubmit = onSubmit.bind(this)
-    
-    const {register, handleSubmit, watch, errors} = useForm()
+
+    const { register, handleSubmit, watch, errors } = useForm()
 
 
     const handleOnSubmit = (data) => {
-        console.log(data)
+        onSubmit(data)
     }
 
     const fields = children.map((child, index) => (
@@ -26,11 +27,13 @@ export default function Form({ onSubmit,submitBtnName, children }) {
     ))
 
     return (
-        <form onSubmit={handleSubmit(handleOnSubmit)}>
-            {fields}
-            <div className="form-control">
-                <Button onSubmit={handleSubmit} title={submitBtnName ? submitBtnName : 'Submeter'} expanded />
-            </div>
-        </form>
+        <div className="form-component">
+            <form onSubmit={handleSubmit(handleOnSubmit)}>
+                {fields}
+                <div className="form-control submit-btn">
+                    <Button onSubmit={handleSubmit} title={submitBtnName ? submitBtnName : 'Submeter'} expanded />
+                </div>
+            </form>
+        </div>
     )
 }

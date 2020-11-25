@@ -16,14 +16,12 @@ function Input({
     }
 
     return (
-        <div className="input">
+        <div className="input-component">
             <input
                 {...rest}
                 name={name}
-                ref={ref(rules)}
-                className={""}
-                type="text"/>
-                <div className="errors">
+                ref={ref(rules)}/>
+                <div className="input-errors">
                     {error()}
                 </div>
         </div>
