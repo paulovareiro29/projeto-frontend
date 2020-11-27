@@ -1,4 +1,6 @@
 import { React, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import API from "../components/API";
 import Auth from "../components/Auth";
 
 import Badge from "../components/Badge/Badge";
@@ -6,46 +8,43 @@ import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
 import Form from "../components/Form/Form";
 import Input from "../components/Inputs/Input";
+import Loading from "../components/Loading/Loading";
 
 
 import Logo from "../images/profile.jpg"
 
+
+
 import '../styles/pages/profile.css'
 
 export default function Profile() {
+    let {id} = useParams()
+
     const [editing, setEditing] = useState(false)
     const [info, setInfo] = useState(undefined)
 
     const [refresh, setRefresh] = useState(false)
 
     useEffect(() => {
+        async function fetchData(){
+            const data = await API.getUser(id)
+
+            setInfo(data)
+            if(refresh === true) 
+                setRefresh(false)
+        }
+
         if (info === undefined || refresh === true) {
             fetchData()
         }
     });
-
-    const fetchData = async () => {
-        
-        await fetch(`http://localhost/projeto-backend/user/token/${Auth.getToken()}`,
-            {
-                method: "GET",
-                headers: { "content-type": "application/json" },
-                mode: 'cors'
-            })
-            .then(res => res.json())
-            .then((result) => {
-                setInfo(result)
-                if (refresh === true) setRefresh(false)
-            })
-    }
 
     const editButtonClick = () => {
         setEditing(true)
     }
 
     const saveEdit = async (e) => {
-        e.preventDefault()
-
+        console.log(e.nome)
 
         //atribuir ID
         await fetch(`http://localhost/projeto-backend/user/token/${Auth.getToken()}`,
@@ -55,25 +54,26 @@ export default function Profile() {
                 body: JSON.stringify({
                     //"username": info.username,
                     //"pass": info.password,
-                    "nome": e.target.nome.value,
-                    "morada": e.target.morada.value,
-                    "email": e.target.email.value,
+                    "nome": e.nome,
+                    "morada": e.morada,
+                    "email": e.email,
                     "admin": info.roles.admin,
                     "atleta": info.roles.atleta,
                     "treinador": info.roles.treinador
                 }),
                 mode: 'cors'
             })
-            /*.then(res => res.json())
+            .then(res => res.json())
             .then((res) => {
                 console.log(res)
-            })*/
+            })
 
         setRefresh(true)
         setEditing(false)
     }
-
-    if (info === undefined || refresh) return <h1>Loading</h1>
+    
+    if (info === undefined || refresh) 
+        return <Loading />
 
     return (
         <div id="profile">
@@ -116,28 +116,15 @@ export default function Profile() {
                 {
                     editing
                         ? <Card title={<>Informação</>} >
-                            <Form onSubmit={saveEdit}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <td><Input maxLength={50} value={info.nome} placeholder="Nome" name="nome" /></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <td><Input value={info.email} placeholder="Email" name="email" /></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Morada</th>
-                                            <td><Input value={info.morada} placeholder="Morada" name="morada" /></td>
-                                        </tr>
-                                        <tr>
-                                            <th></th>
-                                            <td><Button onSubmit={saveEdit} type="submit" title="Guardar" size={15} styleType={"secondary"} bold /></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <Form onSubmit={saveEdit} submitBtnName="Guardar">
+                                <label htmlFor="nome">Nome</label>
+                                <Input defaultValue={info.nome} placeholder="Nome" name="nome" id="nome"/>
 
+                                <label htmlFor="email">Email</label>
+                                <Input defaultValue={info.email} placeholder="Email" name="email" id="email"/>
+
+                                <label htmlFor="morada">Morada</label>
+                                <Input defaultValue={info.morada} placeholder="Morada" name="morada" id="morada"/>
                             </Form>
                         </Card>
 

@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useEffect, useState } from "react";
 
 
 import { AiFillHome } from "react-icons/ai";
@@ -13,9 +13,23 @@ import SidebarSubItem from "./partials/SidebarSubItem";
 import './styles/sidebar.css'
 import SidebarMenu from "./partials/SidebarMenu";
 import Auth from "../Auth";
+import API from "../API";
+import Loading from "../Loading/Loading";
 
 export default function Sidebar() {
 
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+        async function fetchUser() {
+            setUser(await API.getUserByToken(Auth.getToken()))
+        }
+
+        if (!user)
+            fetchUser()
+    }, [user])
+
+    if (!user) return (<Loading />)
 
     return (
         <div id="sidebar">
@@ -24,31 +38,33 @@ export default function Sidebar() {
             </div>
             <div className="sidebar-content">
                 <SidebarMenu>
-                    <SidebarItem icon={AiFillHome} title="Home" to="/app"/>
-                    <SidebarItem icon={CgProfile} title="Perfil" to="/app/profile"/>
+                    <SidebarItem icon={AiFillHome} title="Home" to="/app" />
+                    <SidebarItem icon={CgProfile} title="Perfil" to={"/app/profile/" + user.id} />
                 </SidebarMenu>
 
                 <SidebarMenu title="Area Principal">
                     <SidebarItem icon={CgGym} title="Treino" permission={Auth.isAny()}>
                         {/* PARA ATLETAS */}
-                        <SidebarSubItem title="Planos de treino" permission={Auth.isAtleta()}/>
+                        <SidebarSubItem title="Planos de treino" permission={Auth.isAtleta()} />
 
                         {/* PARA TREINADORES */}
-                        <SidebarSubItem title="Exercicios" permission={Auth.isTreinador()}/>
+                        <SidebarSubItem title="Exercicios" permission={Auth.isTreinador()} />
 
 
                     </SidebarItem>
                     <SidebarItem icon={TiArrowRepeatOutline} title="Relações" permission={Auth.isAny()}>
                         {/* PARA ATLETAS */}
-                        <SidebarSubItem title="Treinadores" permission={Auth.isAtleta()}/>
+                        <SidebarSubItem title="Treinadores" permission={Auth.isAtleta()} />
 
                         {/* PARA TREINADORES */}
-                        <SidebarSubItem title="Atletas" permission={Auth.isTreinador()}/>
+                        <SidebarSubItem title="Atletas" permission={Auth.isTreinador()} />
                     </SidebarItem>
                 </SidebarMenu>
 
                 <SidebarMenu title="Administração" permission={Auth.isAdmin()}>
-                    <SidebarItem icon={RiAdminFill} title="Administração" to="/app/admin" permission={Auth.isAdmin()}/>
+                    <SidebarItem icon={RiAdminFill} title="Administração" permission={Auth.isAdmin()}>
+                        <SidebarSubItem title="Atribuir roles" to="/app/admin/roles" permission={Auth.isAdmin()} />
+                    </SidebarItem>
                 </SidebarMenu>
 
             </div>

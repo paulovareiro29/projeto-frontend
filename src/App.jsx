@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css'
 import Profile from './pages/Profile';
+import Roles from './pages/admin/Roles';
 
 function App(props) {
   return (
@@ -13,14 +14,24 @@ function App(props) {
         <div className="side">
           <Sidebar />
         </div>
-        
+
         <div className="content-wrapper">
           <div className="content">
 
 
-            <Route path="/app/profile">
+            <Route path="/app/profile/:id" >
               <Profile />
             </Route>
+
+
+
+
+
+            {/*admin pages*/}
+            <Route path="/app/admin/roles">
+              <Roles />
+            </Route>
+
           </div>
         </div>
       </div>

@@ -36,7 +36,7 @@ class Auth extends Component{
 
     logout() {
         cookies.remove('access_token')
-        console.log("Logged out: token = undefined")
+        console.log("Logged out: token = " + this.getToken())
         return true
     }
 
