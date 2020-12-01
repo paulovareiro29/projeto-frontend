@@ -1,0 +1,78 @@
+.roles .user-list{
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.roles .user-list table{
+    border-collapse: collapse;
+}
+
+.roles .user-list thead th{
+    background: #3a3a3a;
+
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.roles .user-list th, .roles .user-list td{
+    /*border: 1px solid #999999;*/
+}
+
+
+.user-list .user-list-row{
+    margin: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+
+.user-list-row .user-list-row-title{
+    background-color: #adadadb0;
+
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.user-list-row .user-list-row-title a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.user-list-row .checkbox{
+    cursor: pointer;
+
+    color: #999999;
+
+    padding: 5px;
+    
+    
+    text-transform: capitalize;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-list-row .checkbox:hover{
+    background:  #4eec2f;
+}
+
+.user-list-row .checkbox.checked{
+    color: #ffffff;
+    background:  #0088ff;
+}
+
+.user-list-row .checkbox.checked:hover{
+    background:  #d52f2f;
+}
+
+.roles .roles-search-btn{
+    border-radius: 10px;
+    border: none;
+    padding: 7px 15px;
+    width: 100%;
+}
+
+.roles .roles-search-btn:focus {
+    outline: none;
+}

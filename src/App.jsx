@@ -4,7 +4,9 @@ import Sidebar from './components/Sidebar/Sidebar';
 
 import './app.css'
 import Profile from './pages/Profile';
-import Roles from './pages/admin/Roles';
+
+import Administracao from './pages/Administracao';
+import AreaTreinador from './pages/AreaTreinador';
 
 function App(props) {
   return (
@@ -23,13 +25,19 @@ function App(props) {
               <Profile />
             </Route>
 
+            {/*atleta pages*/}
+            <Route path="/app/atleta">
+            </Route>
 
-
+            {/*treinador pages*/}
+            <Route path="/app/treinador">
+              <AreaTreinador />
+            </Route>
 
 
             {/*admin pages*/}
-            <Route path="/app/admin/roles">
-              <Roles />
+            <Route path="/app/admin">
+              <Administracao />
             </Route>
 
           </div>

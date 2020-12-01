@@ -1,0 +1,37 @@
+.exercises .exercise-list{
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.exercises .exercise-list table{
+    border-collapse: collapse;
+}
+
+.exercises .exercise-list thead th{
+    background: #3a3a3a;
+
+    padding: 7px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.exercises .exercise-list th, .exercise .user-list td{
+    /*border: 1px solid #999999;*/
+}
+
+
+.exercise-list .exercise-list-row{
+    margin: 10px 10px 0px 0px;
+    overflow: hidden;
+}
+
+.exercise-list-row .exercise-list-row-title{
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.exercise-list-row .exercise-list-row-title a{
+    text-decoration: none;
+    color: #ffffff;
+}

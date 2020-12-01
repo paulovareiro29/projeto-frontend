@@ -43,27 +43,27 @@ export default function Sidebar() {
                 </SidebarMenu>
 
                 <SidebarMenu title="Area Principal">
-                    <SidebarItem icon={CgGym} title="Treino" permission={Auth.isAny()}>
+                    <SidebarItem icon={CgGym} title="Treino" permission={(user.roles.atleta || user.roles.treinador)}>
                         {/* PARA ATLETAS */}
-                        <SidebarSubItem title="Planos de treino" permission={Auth.isAtleta()} />
+                        <SidebarSubItem title="Planos de treino" permission={user.roles.atleta} />
 
                         {/* PARA TREINADORES */}
-                        <SidebarSubItem title="Exercicios" permission={Auth.isTreinador()} />
+                        <SidebarSubItem title="Exercicios" to="/app/treinador/exercicios" permission={user.roles.treinador} />
 
 
                     </SidebarItem>
-                    <SidebarItem icon={TiArrowRepeatOutline} title="Relações" permission={Auth.isAny()}>
+                    <SidebarItem icon={TiArrowRepeatOutline} title="Relações" permission={(user.roles.atleta || user.roles.treinador)}>
                         {/* PARA ATLETAS */}
-                        <SidebarSubItem title="Treinadores" permission={Auth.isAtleta()} />
+                        <SidebarSubItem title="Treinadores" permission={user.roles.atleta} />
 
                         {/* PARA TREINADORES */}
-                        <SidebarSubItem title="Atletas" permission={Auth.isTreinador()} />
+                        <SidebarSubItem title="Atletas" permission={user.roles.treinador} />
                     </SidebarItem>
                 </SidebarMenu>
 
-                <SidebarMenu title="Administração" permission={Auth.isAdmin()}>
-                    <SidebarItem icon={RiAdminFill} title="Administração" permission={Auth.isAdmin()}>
-                        <SidebarSubItem title="Atribuir roles" to="/app/admin/roles" permission={Auth.isAdmin()} />
+                <SidebarMenu title="Administração" permission={user.roles.admin}>
+                    <SidebarItem icon={RiAdminFill} title="Administração" permission={user.roles.admin}>
+                        <SidebarSubItem title="Permissões" to="/app/admin/roles" permission={user.roles.admin} />
                     </SidebarItem>
                 </SidebarMenu>
 

@@ -47,7 +47,7 @@ export default function Profile() {
         console.log(e.nome)
 
         //atribuir ID
-        await fetch(`http://localhost/projeto-backend/user/token/${Auth.getToken()}`,
+        await fetch(`http://localhost/projeto-backend/user/${id}`,
             {
                 method: "PUT",
                 headers: { "content-type": "application/json" },

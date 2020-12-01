@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Cookies from 'universal-cookie'
+import API from './API'
 
 const cookies = new Cookies()
 
@@ -56,18 +57,6 @@ class Auth extends Component{
         if (this.getToken() === undefined)
             return false
 
-        return true
-    }
-
-    isAtleta() {
-        return true
-    }
-
-    isTreinador() {
-        return true
-    }
-
-    isAdmin() {
         return true
     }
 
