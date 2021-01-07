@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import Cookies from 'universal-cookie'
-import API from './API'
 
 const cookies = new Cookies()
 

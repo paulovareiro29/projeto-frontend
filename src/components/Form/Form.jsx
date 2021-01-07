@@ -1,4 +1,4 @@
-import { cloneElement, React, useState } from "react";
+import { cloneElement, React } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../Button/Button";
 
@@ -8,23 +8,32 @@ export default function Form({ onSubmit, submitBtnName, children }) {
 
     onSubmit = onSubmit.bind(this)
 
-    const { register, handleSubmit, watch, errors } = useForm()
+    const { register, handleSubmit, errors } = useForm()
 
 
     const handleOnSubmit = (data) => {
         onSubmit(data)
     }
 
-    const fields = children.map((child, index) => (
-        <div className="form-control" key={index}>
+    const fields = (children.length !== undefined ?
+        children.map((child, index) => (
+            <div className="form-control" key={index}>
+                {cloneElement(
+                    child,
+                    {
+                        errors: errors,
+                        ref: register,
+                    })}
+            </div>)
+        ) :
+        <div className="form-control" >
             {cloneElement(
-                child,
+                children,
                 {
                     errors: errors,
                     ref: register,
                 })}
-        </div>
-    ))
+        </div>)
 
     return (
         <div className="form-component">

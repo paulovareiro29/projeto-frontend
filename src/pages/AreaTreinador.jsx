@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 
 import '../styles/pages/areatreinador.css'
 import ExerciciosPage from "./treinador/exercicios/ExerciciosPage";
+import PlanosTreinadorPage from "./treinador/planos/PlanosTreinadorPage";
 
 export default function AreaTreinador(){
 
@@ -15,6 +16,9 @@ export default function AreaTreinador(){
             <div className="areatreinador-body">
                 <Route path="/app/treinador/exercicios">
                     <ExerciciosPage />
+                </Route>
+                <Route path="/app/treinador/planos">
+                    <PlanosTreinadorPage />
                 </Route>
             </div>
 

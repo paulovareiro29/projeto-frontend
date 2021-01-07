@@ -1,0 +1,13 @@
+.select-component select{
+    cursor:pointer;
+    font-size: 18px;
+
+    border-radius: 10px;
+    border: none;
+    padding: 7px 15px;
+    width: 100%;
+}
+
+.select-component select:focus {
+    outline: none;
+}

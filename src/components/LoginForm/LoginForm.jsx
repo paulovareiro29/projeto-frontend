@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import Auth from "../Auth";
 import Form from "../Form/Form";
-import Input from "../Inputs/Input";
+import Input from "../Form/Inputs/Input";
+
 
 import './loginform.css'
 
@@ -37,6 +38,9 @@ export default function LoginForm(props) {
                             required: "This is required"
                         }
                     } />
+
+                   
+
                 </Form>
             </div>
 

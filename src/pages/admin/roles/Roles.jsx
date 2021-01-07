@@ -72,7 +72,7 @@ export default function Roles() {
 
     const List = Object.values(users).map((user, index) => {
 
-        if (!user.username.toString().includes(searchValue))
+        if (!user.username.toString().toLowerCase().includes(searchValue))
             return null
 
         return (

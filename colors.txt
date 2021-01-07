@@ -3,3 +3,9 @@ Primary: #0088ff;
 
 Secondary: #C0C0C0;
     hover: #999999;
+
+
+
+SIDEBAR WIDTH: 270px
+
+RED: #d52f2f

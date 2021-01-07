@@ -6,6 +6,7 @@
 
 .exercises .exercise-list table{
     border-collapse: collapse;
+    
 }
 
 .exercises .exercise-list thead th{
@@ -34,4 +35,41 @@
 .exercise-list-row .exercise-list-row-title a{
     text-decoration: none;
     color: #ffffff;
+}
+
+.exercise-list-row td {
+    flex-wrap: wrap;
+    border: 1px solid #3a3a3a;
+    text-align: center;
+    padding: 2px;
+}
+
+.exercises .exercises-search-btn{
+    border-radius: 10px;
+    border: none;
+    padding: 7px 15px;
+    width: 100%;
+}
+
+.exercises .exercises-search-btn:focus {
+    outline: none;
+}
+
+.card-exercicios{
+    display: flex;
+}
+
+.card-exercicios .card-exercicios-title{
+    margin-right: 5px;
+}
+
+.card-exercicios .card-exercicios-btn{
+    cursor: pointer;
+}
+
+.popup-trigger{
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
 }

@@ -1,0 +1,36 @@
+.exercicio-component{
+    margin-bottom: 2px;
+}
+
+.exercicio-component .exercicio-wrapper{
+    border: 1px solid;
+    border-image-source: linear-gradient(180deg, #ff0000, #1d1d1d00);
+    border-image-slice: 1;
+
+    font-size: 15px;
+    padding: 1px;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-header .exercicio-nome{
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-header .exercicio-descricao{
+    font-weight: 100;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-body {
+    padding: 2px 5px;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-body .exercicio-info{
+    display: flex;
+    flex-direction: column;
+    color: #adadadb0;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-body .exercicio-info span{
+    color: #FFFFFF;
+    padding: 0px 5px;
+}

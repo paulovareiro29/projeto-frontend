@@ -1,0 +1,48 @@
+.planos-treinador .plano{
+    border-radius: 10px;
+    
+    border: 1px solid #5e5e5e;
+    background: #3a3a3a;
+}
+
+.planos-treinador .plano .plano-header{
+    padding: 5px 10px 5px 10px;
+
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(90deg, #5e5e5e, #3a3a3a);
+    border-image-slice: 1;
+
+
+    display:flex;
+    flex-direction: column;
+}
+
+.planos-treinador .plano .plano-header .plano-header-top{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.planos-treinador .plano .plano-header .plano-nome{
+    cursor: pointer;
+    
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.planos-treinador .plano .plano-header .plano-data{
+    font-size: 12px;
+    color: #adadadce;
+}
+
+.planos-treinador .plano .plano-body{
+    padding: 5px 10px;
+    display: flex;
+}
+
+.planos-treinador .plano .plano-body .plano-atleta{
+    padding: 0px 5px;
+    display: flex;
+}

@@ -1,13 +1,12 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../components/API";
-import Auth from "../components/Auth";
 
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
 import Form from "../components/Form/Form";
-import Input from "../components/Inputs/Input";
+import Input from "../components/Form/Inputs/Input";
 import Loading from "../components/Loading/Loading";
 
 
