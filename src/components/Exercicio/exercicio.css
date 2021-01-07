@@ -1,14 +1,24 @@
 .exercicio-component{
+    margin: 1px 1px;
     margin-bottom: 2px;
 }
 
 .exercicio-component .exercicio-wrapper{
-    border: 1px solid;
-    border-image-source: linear-gradient(180deg, #ff0000, #1d1d1d00);
-    border-image-slice: 1;
-
+    border: 2px solid #d52f2fbe;
     font-size: 15px;
-    padding: 1px;
+}
+
+.exercicio-component .exercicio-wrapper.done{
+    border: 2px solid #4eec2f83;
+    font-size: 15px;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-header{
+    background: #d52f2fbe;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-header.done{
+    background: #4eec2f83;
 }
 
 .exercicio-component .exercicio-wrapper .exercicio-header .exercicio-nome{
@@ -20,8 +30,42 @@
     font-weight: 100;
 }
 
-.exercicio-component .exercicio-wrapper .exercicio-body {
-    padding: 2px 5px;
+
+
+.exercicio-component .exercicio-wrapper .exercicio-body.hidden{
+    max-height: 0;
+    transition: all 0.4s ease-out;
+    overflow: hidden;
+    margin: 0px 5px;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-body{
+    max-height: 500px;
+    transition: all 0.4s ease-in;
+    overflow: hidden;
+    text-align: left;
+    margin: 2px 5px;
+}
+
+.exercicio-component .exercicio-wrapper .exercicio-body .exercicio-options{
+    margin-top: 2px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.exercicio-component .exercicio-wrapper .exercicio-body .exercicio-options .exercicio-options-wrapper{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 80%;
+}   
+
+
+.exercicio-component .exercicio-wrapper .exercicio-body .exercicio-options .exercicio-options-wrapper .exercicio-options-item{
+    cursor: pointer;
 }
 
 .exercicio-component .exercicio-wrapper .exercicio-body .exercicio-info{
@@ -32,5 +76,5 @@
 
 .exercicio-component .exercicio-wrapper .exercicio-body .exercicio-info span{
     color: #FFFFFF;
-    padding: 0px 5px;
+    margin: 0px 5px;
 }

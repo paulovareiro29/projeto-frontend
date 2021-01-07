@@ -30,7 +30,7 @@ export default function AddExerciseForm({onSuccess}) {
     onSuccess = onSuccess.bind(this)
 
     const tipos = Object.values(tiposExercicio).map((tipo, index) => {
-        return <SelectOption value={tipo.id}>{tipo.nome}</SelectOption>
+        return <SelectOption key={index} value={tipo.id}>{tipo.nome}</SelectOption>
     })
 
     const onSubmit = (e) => {
