@@ -1,0 +1,9 @@
+.areaatleta-header {
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(90deg, #adadad6c, #1d1d1d00);
+    border-image-slice: 1;
+
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

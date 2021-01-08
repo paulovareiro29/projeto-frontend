@@ -8,6 +8,10 @@ class API extends Component {
         this.url = "http://localhost/projeto-backend"
     }
 
+    getURL() {
+        return this.url
+    }
+
     async getUsers() {
         let response
 
@@ -112,6 +116,22 @@ class API extends Component {
         let response
 
         await fetch(`${this.url}/plano/treinador/${user}`, {
+            method: "GET",
+            headers: { "content-type": "application/json" },
+            mode: 'cors'
+        })
+            .then(res => res.json())
+            .then((result) => {
+                response = result
+            })
+
+        return response
+    }
+
+    async getPlanosAtleta(user) {
+        let response
+
+        await fetch(`${this.url}/plano/atleta/${user}`, {
             method: "GET",
             headers: { "content-type": "application/json" },
             mode: 'cors'

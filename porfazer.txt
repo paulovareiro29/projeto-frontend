@@ -1,0 +1,2 @@
+copiar planos de treino - treinador
+associar treinadores a atletas - admin

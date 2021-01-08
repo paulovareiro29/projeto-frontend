@@ -29,7 +29,7 @@ export default function Exercicio({ exercicio, refresh, ...rest }) {
                 console.log(res)
             })
 
-    }
+    }   
 
     const deleteExercise = async () => {
         await fetch(`http://localhost/projeto-backend/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
@@ -80,10 +80,10 @@ export default function Exercicio({ exercicio, refresh, ...rest }) {
                 </Form>
             </>
             : <>
-                <div className="exercicio-info">Carga <span>{exercicio.carga}</span></div>
-                <div className="exercicio-info">Repetições<span> {exercicio.repeticoes}</span></div>
-                <div className="exercicio-info">Series<span> {exercicio.series}</span></div>
-                <div className="exercicio-info">Tempo/Distancia<span> {exercicio.tempo_distancia}</span></div>
+                <div className="exercicio-info">Carga <span>{exercicio.carga || "N/A"}</span></div>
+                <div className="exercicio-info">Repetições<span> {exercicio.repeticoes || "N/A"}</span></div>
+                <div className="exercicio-info">Series<span> {exercicio.series || "N/A"}</span></div>
+                <div className="exercicio-info">Tempo/Distancia<span> {exercicio.tempo_distancia || "N/A"}</span></div>
                 <div className="exercicio-info " >Realizado
                     <input type="checkbox" onClick={() => {
                         setIsDone(!isDone)

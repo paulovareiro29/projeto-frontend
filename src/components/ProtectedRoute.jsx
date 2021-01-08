@@ -8,11 +8,14 @@ const checkAuth = () => {
     return Auth.isLoggedIn()
 }
 
-export default function ProtectedRoute({component: Component, ...rest}){
+export default function ProtectedRoute({component: Component, callback, ...rest}){
+
+    callback = callback.bind(this)
+
     return (
         <Route {...rest} render={
             (props) => 
-                checkAuth()
+                callback()
                 ?   <Component {...props} />
                 :   (<Redirect to={{
                         pathname: "/",

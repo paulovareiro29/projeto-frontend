@@ -29,7 +29,7 @@ export default function PlanosTreinadorPage() {
         }
 
         if (!user)
-            fetchUser()
+           fetchUser()
 
         if (!planos && user)
             fetchPlanos()
@@ -40,31 +40,31 @@ export default function PlanosTreinadorPage() {
 
     const addAtleta = async (data) => {
         await fetch(`http://localhost/projeto-backend/plano/associate`,
-        {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({
-                "plano_id": modal.plano.id,
-                "atleta_id": data.atleta
-            }),
-            mode: 'cors'
-        })
-        .then(res => res.json())
-        .then((res) => {
-            console.log(res)
-            setModal({ isShowing: false, plano: null })
-            setPlanos(null)
-        })
+            {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    "plano_id": modal.plano.id,
+                    "atleta_id": data.atleta
+                }),
+                mode: 'cors'
+            })
+            .then(res => res.json())
+            .then((res) => {
+                console.log(res)
+                setModal({ isShowing: false, plano: null })
+                setPlanos(null)
+            })
     }
 
     const ListaPlanos = () => {
         return Object.values(planos).map((plano, index) => {
             return <PlanoTreino defaultPlano={plano} key={index}>
-                <div className="plano-body">
-                    Atletas 
+                <div className="plano-treinador-footer">
+                    <div>Atletas<span className="addAtletaBtn"><BsPlusCircleFill onClick={() => { setModal({ isShowing: true, plano: plano }) }} /></span></div>
                     {Object.values(plano.atletas_associados).map((atleta, key) => {
-                    return <Link to={`/app/profile/${atleta.id}`} key={key} className="plano-atleta">{atleta.nome}</Link>
-                })}<span className="addAtletaBtn"><BsPlusCircleFill onClick={() => { setModal({ isShowing: true, plano: plano }) }} /></span>
+                    return <Link to={`/app/profile/${atleta.id}`} key={key} className="plano-treinador-atleta">{atleta.nome}</Link>
+                })}
                 </div>
             </PlanoTreino>
 
@@ -93,7 +93,7 @@ export default function PlanosTreinadorPage() {
                             let exists = false
                             console.log(atleta)
                             for (const [key, value] of Object.entries(modal.plano.atletas_associados)) {
-                                
+
                                 if (value.id === atleta.id)
                                     exists = true
 
