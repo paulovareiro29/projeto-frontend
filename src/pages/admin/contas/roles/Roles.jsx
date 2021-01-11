@@ -1,9 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import API from "../../../components/API";
-import Loading from "../../../components/Loading/Loading";
-import Card from "../../../components/Card/Card";
+import API from "../../../../components/API";
+import Loading from "../../../../components/Loading/Loading";
+import Card from "../../../../components/Card/Card";
 
 import { HiUserAdd, HiUserRemove } from 'react-icons/hi'
 
@@ -13,6 +13,7 @@ import './roles.css'
 function Checkbox({ id, name, defaultChecked, props }) {
 
     const [checked, setChecked] = useState(defaultChecked)
+
 
     const toggle = async () => {
 
@@ -64,9 +65,9 @@ export default function Roles() {
             setUsers(data)
         }
 
-        if (!users)
-            fetchData()
-    })
+
+        fetchData()
+    }, [])
 
     if (!users) return <Loading />
 

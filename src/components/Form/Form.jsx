@@ -15,6 +15,8 @@ export default function Form({ onSubmit, submitBtnName, children }) {
         onSubmit(data)
     }
 
+    if(children === undefined) return null
+
     const fields = (children.length !== undefined ?
         children.map((child, index) => (
             <div className="form-control" key={index}>

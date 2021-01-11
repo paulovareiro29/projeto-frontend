@@ -1,20 +1,16 @@
 import { React, useEffect, useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BiRefresh } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import API from "../../../components/API";
 import Badge from "../../../components/Badge/Badge";
 import CreatePlanoForm from "../../../components/CreatePlanoForm/CreatePlanoForm";
-import Form from "../../../components/Form/Form";
-import SelectOption from "../../../components/Form/Inputs/Select/partials/SelectOption";
-import Select from "../../../components/Form/Inputs/Select/Select";
 import Loading from "../../../components/Loading/Loading";
 import Modal from "../../../components/Modal/Modal";
 import ModalHeader from "../../../components/Modal/partials/ModalHeader";
 import PlanoTreino from "../../../components/PlanoTreino/PlanoTreino";
-import "./planostreinadorpage.css";
 
-export default function PlanosTreinadorPage({ user }) {
+import "./planosadminpage.css";
+
+export default function PlanosAdminPage({ user }) {
   const [planos, setPlanos] = useState(null);
   const [exerciciosDisponiveis, setExerciciosDisponivel] = useState(null);
 
@@ -25,7 +21,7 @@ export default function PlanosTreinadorPage({ user }) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        treinador_id: user.id,
+        treinador_id: plano.treinador.id,
         nome: plano.nome,
         descricao: plano.descricao,
         data_inicial: plano.data_inicial,
@@ -49,17 +45,15 @@ export default function PlanosTreinadorPage({ user }) {
     if (!exerciciosDisponiveis) fetchExercicios();
 
     async function fetchPlanos() {
-      setPlanos(await API.getPlanosTreinador(user.id));
+      setPlanos(await API.getPlanos());
     }
 
     if (!planos && exerciciosDisponiveis) fetchPlanos();
   }, [planos, exerciciosDisponiveis]);
 
-  if (!planos || !exerciciosDisponiveis) {
+  if (planos === null || exerciciosDisponiveis === null) {
     return <Loading />;
   }
-
-
 
   const ListaPlanos = () => {
     return Object.values(planos).map((plano, index) => {
@@ -69,6 +63,7 @@ export default function PlanosTreinadorPage({ user }) {
           exercicios={exerciciosDisponiveis}
           key={index}
           footer
+          admin
         />
       );
     });
@@ -76,30 +71,30 @@ export default function PlanosTreinadorPage({ user }) {
 
   return (
     <>
-      <div className="planos-treinador">
-        <span
-          className="planos-treinador-btn"
-          onClick={() => {
-            setModalAddPlano(true);
-          }}
-        >
-          <Badge>Adicionar plano</Badge>
-        </span>
-        <span
-          className="planos-treinador-btn"
-          onClick={() => {
-            setPlanos(null);
-          }}
-        >
-          <Badge>
-            Refresh
-            <BiRefresh size={20} />
-          </Badge>
-        </span>
+      <div className="planos-admin">
+        <div className="planos-admin-header">
+          <span
+            className="planos-admin-btn"
+            onClick={() => {
+              setModalAddPlano(true);
+            }}
+          >
+            <Badge>Adicionar plano</Badge>
+          </span>
+          <span
+            className="planos-admin-btn"
+            onClick={() => {
+              setPlanos(null);
+            }}
+          >
+            <Badge>
+              Refresh
+              <BiRefresh size={20} />
+            </Badge>
+          </span>
+        </div>
         {ListaPlanos()}
       </div>
-
-
       {modalAddPlano ? (
         <Modal
           isShowing={modalAddPlano}
@@ -109,13 +104,16 @@ export default function PlanosTreinadorPage({ user }) {
         >
           <ModalHeader>Criar plano</ModalHeader>
 
-          <CreatePlanoForm callback={createPlano} />
+          <CreatePlanoForm
+            callback={(data) => {
+              createPlano(data)
+            }}
+            admin
+          />
         </Modal>
       ) : (
         ""
       )}
-
-      
     </>
   );
 }

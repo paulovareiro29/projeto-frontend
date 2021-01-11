@@ -11,9 +11,9 @@ import Loading from "./components/Loading/Loading";
 import { UserContext } from "./components/Context";
 import API from "./components/API";
 import Auth from "./components/Auth";
-import PlanosAtletaPage from "./pages/atleta/planos/PlanosAtletaPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AreaAtleta from "./pages/AreaAtleta";
+import Planos from "./pages/Planos";
 
 function App(props) {
   const [user, setUser] = useState(null);
@@ -24,6 +24,7 @@ function App(props) {
     }
 
     if (!user) fetchUser();
+    console.log(user)
   }, [user]);
 
   if (user === null) return <Loading />;
@@ -39,6 +40,10 @@ function App(props) {
           <div className="content">
             <Route path="/app/profile/:id">
               <Profile />
+            </Route>
+
+            <Route path="/app/planos">
+              <Planos />
             </Route>
 
             {/*atleta pages*/}

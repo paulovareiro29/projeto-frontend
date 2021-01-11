@@ -1,8 +1,9 @@
 import { React } from "react";
 import { Route } from "react-router-dom";
-import Roles from "./admin/roles/Roles";
 
 import '../styles/pages/administration.css'
+import AssociarPage from "./admin/associar/AssociarPage";
+import ContasPage from "./admin/contas/ContasPage";
 
 export default function Administracao() {
     return (
@@ -13,8 +14,11 @@ export default function Administracao() {
             </div>
 
             <div className="administration-body">
-                <Route path="/app/admin/roles">
-                    <Roles />
+                <Route path="/app/admin/contas">
+                    <ContasPage />
+                </Route>
+                <Route path="/app/admin/associar">
+                    <AssociarPage />
                 </Route>
             </div>
 

@@ -64,6 +64,30 @@
     align-items: flex-start;
 }
 
+#profile .profile-header .profile-info-wrapper .profile-edit-info .edit-password-btn{
+    margin-left: 5px;
+}
+
+
+.mudar-password-form .error-info{
+    font-size: 16px;
+
+    padding: 10px;
+    margin: 10px 0px; 
+
+    border: 1px solid #d52f2f;
+    border-radius: 15px;
+
+    background: #ff9c8d;
+
+    text-align: center;
+    color: black;
+}
+
+.mudar-password-form .error-info.hidden{
+    display: none;
+}
+
 #profile .profile-header .profile-info .profile-info-name{
     font-weight: bold;
     font-size: 25px;

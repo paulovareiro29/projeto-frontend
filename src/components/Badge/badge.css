@@ -1,8 +1,15 @@
+.badge-wrapper{
+    display: inline-block;
+}
+
 .badge {
-    cursor: default;
     padding: 5px;
     border-radius: 10px;
     margin: 2px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .badge.primary {

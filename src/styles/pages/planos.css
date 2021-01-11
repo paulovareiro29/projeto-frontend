@@ -1,0 +1,29 @@
+.planos-treino .planos-treino-header {
+  border-bottom: 1px solid;
+  border-image-source: linear-gradient(90deg, #adadad6c, #1d1d1d00);
+  border-image-slice: 1;
+
+  margin-bottom: 20px;
+  padding: 10px 0px;
+}
+.planos-treino .planos-treino-header .planos-treino-header-title{
+    border-bottom: 1px solid;
+    border-image-source: linear-gradient(90deg, #adadad6c, #1d1d1d00);
+    border-image-slice: 1;
+
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.planos-treino .planos-treino-header .planos-treino-header-subtitle{
+    display: flex;
+
+}
+
+.planos-treino .planos-treino-header .planos-treino-header-btn {
+    margin: 0px 10px;
+}
+
+.planos-treino .planos-treino-body {
+}

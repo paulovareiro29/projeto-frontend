@@ -9,7 +9,7 @@ export default function Button({title, styleType, bold, size, expanded, ...butto
     return(
         <button 
             {...buttonProps}
-            className={"btn " + (styleType ? styleType : 'primary ') + (expanded ? 'expanded ' : '')}
+            className={"btn " + (styleType ? styleType : ' primary ') + (expanded ? ' expanded ' : '')}
             style={{"fontSize": size + "px",
                     "fontWeight": bold ? "bold" : ''}}
             >{title}</button>

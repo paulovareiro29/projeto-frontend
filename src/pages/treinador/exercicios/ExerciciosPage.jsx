@@ -45,6 +45,14 @@ export default function ExerciciosPage() {
 
     const [modalIsShowing, setModalIsShowing] = useState(false)
 
+
+    const refresh = async () => {
+        setExercicios(null)
+        const data = await API.getExercises()
+        setExercicios(data)
+    }
+
+
     useEffect(() => {
         async function fetchData() {
             const data = await API.getExercises()
@@ -114,7 +122,7 @@ export default function ExerciciosPage() {
 
                 <AddExerciseForm onSuccess={() => {
                     setModalIsShowing(false)
-                    setExercicios(null)}}/>
+                    refresh()}}/>
             </Modal>
         </>
     )

@@ -112,6 +112,22 @@ class API extends Component {
         }
     }
 
+    async getPlanos(){
+        let response
+
+        await fetch(`${this.url}/plano/`, {
+            method: "GET",
+            headers: { "content-type": "application/json" },
+            mode: 'cors'
+        })
+            .then(res => res.json())
+            .then((result) => {
+                response = result
+            })
+
+        return response
+    }
+
     async getPlanosTreinador(user) {
         let response
 

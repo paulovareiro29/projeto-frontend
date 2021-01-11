@@ -1,81 +1,138 @@
 .plano-component {
-    margin: 10px;
+  margin: 10px;
 }
 
 .plano-component .plano-wrapper {
-    border-radius: 10px;
-    
-    border: 1px solid #5e5e5e;
-    background: #3a3a3a;
+  border-radius: 10px;
+
+  border: 1px solid #5e5e5e;
+  background: #3a3a3a;
 }
 
 .plano-component .plano-wrapper .plano-header {
-    padding: 5px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
 
-    border-bottom: 1px solid;
-    border-image-source: linear-gradient(90deg, #5e5e5e, #3a3a3a);
-    border-image-slice: 1;
+  border-bottom: 1px solid;
+  border-image-source: linear-gradient(90deg, #5e5e5e, #3a3a3a);
+  border-image-slice: 1;
 
-
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-.plano-component  .plano-wrapper .plano-header .plano-header-top{
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
+.plano-component .plano-wrapper .plano-header .plano-header-top {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 }
 
-.plano-component  .plano-wrapper .plano-header .plano-nome{
-    cursor: pointer;
-    
-    color: white;
-    font-size: 22px;
-    font-weight: 600;
-    margin-right: 10px;
+.plano-component .plano-wrapper .plano-header .plano-nome {
+  cursor: pointer;
+
+  color: white;
+  font-size: 22px;
+  font-weight: 600;
+  margin-right: 10px;
 }
 
-.plano-component  .plano-wrapper .plano-header .plano-data{
-    font-size: 12px;
-    color: #adadadce;
+.plano-component .plano-wrapper .plano-header .plano-data {
+  font-size: 12px;
+  color: #adadadce;
 }
 
-.plano-component  .plano-wrapper .plano-body{
-    padding: 5px 0px;
-    display: flex;
+.plano-component .plano-wrapper .plano-body {
+  padding: 5px 0px;
+  display: flex;
 }
 
 .plano-component .plano-wrapper .plano-body td {
-    min-width: 100px;
+  min-width: 100px;
 
-    vertical-align: top;
+  vertical-align: top;
 
-    text-align: center;
+  text-align: center;
 
-    border: 1px solid white;
-    margin-bottom: 10px;
+  border: 1px solid white;
+  margin-bottom: 10px;
 }
 
-.plano-component .plano-wrapper .plano-body td .bloco-dia{
-    border-bottom: 1px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.plano-component .plano-wrapper .plano-body td .bloco-dia {
+  border-bottom: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.plano-component .plano-wrapper .plano-body td .bloco-dia .addExerciseBtn{
-    margin-left: 5px;
-    cursor: pointer;
+.plano-component .plano-wrapper .plano-body td .bloco-dia .addExerciseBtn {
+  margin-left: 5px;
+  cursor: pointer;
 }
 
-.plano-component  .plano-wrapper .plano-footer{
-    border-top: 1px solid;
-    border-image-source: linear-gradient(90deg, #5e5e5e, #3a3a3a);
-    border-image-slice: 1;
-
-    padding: 5px 10px;
-    display: flex;
+.plano-component .plano-wrapper .plano-copy-btn,
+.plano-component .plano-wrapper .plano-edit-btn {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0px 5px;
 }
 
+.plano-component .plano-wrapper .plano-createdby {
+  font-size: 15px;
+  font-weight: 100;
+  color: #adadadce;
+}
 
+.plano-component .plano-wrapper .plano-footer .addAtletaBtn {
+  cursor: pointer;
+  margin: 0px 5px;
+  color: #fff;
+  background: #0088ff;
+
+  border-radius: 50%;
+  padding: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plano-component .plano-wrapper .plano-footer .deleteAtletaBtn {
+  cursor: pointer;
+  margin: 0px 5px;
+  color: #fff;
+  background: #d52f2f;
+
+  border-radius: 50%;
+  padding: 3px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plano-component .plano-wrapper .plano-footer {
+  border-top: 1px solid;
+  border-image-source: linear-gradient(90deg, #5e5e5e, #3a3a3a);
+  border-image-slice: 1;
+
+  padding: 5px 10px;
+  color: #adadadb0;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.plano-component .plano-wrapper .plano-footer .plano-footer-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.plano-component .plano-wrapper .plano-footer .plano-atleta {
+  text-decoration: none;
+  font-size: 20px;
+  color: #adadad;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.plano-component .plano-wrapper .plano-footer .plano-atleta:hover {
+  color: #fff;
+}
