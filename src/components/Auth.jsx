@@ -28,7 +28,7 @@ class Auth extends Component{
                     this.setToken(response.token)
                     console.log("Logged in: token = " + response.token)
                 }
-                    
+                console.log(response)
             })
         
         

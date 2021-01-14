@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 import "./app.css";
@@ -20,12 +20,28 @@ function App(props) {
 
   useEffect(() => {
     async function fetchUser() {
-      setUser(await API.getUserByToken(await Auth.getToken()));
+      let token = Auth.getToken()
+
+      if (token) {
+        await fetch(`${API.getURL()}/user/token/${token}`, {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+          mode: "cors",
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            setUser(result);
+          })
+          .catch((err) => {
+            props.history.push("/");
+          });
+      } else {
+        props.history.push("/");
+      }
     }
 
-    if (!user) fetchUser();
-    console.log(user)
-  }, [user]);
+    if(!user) fetchUser();
+  }, [user, props.history]);
 
   if (user === null) return <Loading />;
 
@@ -47,23 +63,31 @@ function App(props) {
             </Route>
 
             {/*atleta pages*/}
-            <ProtectedRoute path="/app/atleta" callback={() => {
-              return user.roles.atleta
-            }} component={AreaAtleta}>
-              
-            </ProtectedRoute>
+            <ProtectedRoute
+              path="/app/atleta"
+              callback={() => {
+                return user.roles.atleta;
+              }}
+              component={AreaAtleta}
+            ></ProtectedRoute>
 
             {/*treinador pages*/}
-            <ProtectedRoute path="/app/treinador" callback={() => {
-              return user.roles.treinador
-            }} component={AreaTreinador}>
-            </ProtectedRoute>
+            <ProtectedRoute
+              path="/app/treinador"
+              callback={() => {
+                return user.roles.treinador;
+              }}
+              component={AreaTreinador}
+            ></ProtectedRoute>
 
             {/*admin pages*/}
-            <ProtectedRoute path="/app/admin" callback={() => {
-              return user.roles.admin
-            }} component={Administracao}>
-            </ProtectedRoute>
+            <ProtectedRoute
+              path="/app/admin"
+              callback={() => {
+                return user.roles.admin;
+              }}
+              component={Administracao}
+            ></ProtectedRoute>
           </div>
         </div>
       </div>

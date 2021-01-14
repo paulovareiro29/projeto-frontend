@@ -17,9 +17,6 @@ export default function AreaTreinador(){
                 <Route path="/app/treinador/exercicios">
                     <ExerciciosPage />
                 </Route>
-                <Route path="/app/treinador/planos">
-                    <PlanosTreinadorPage />
-                </Route>
             </div>
 
         </>
