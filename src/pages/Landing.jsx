@@ -25,6 +25,7 @@ function Landing(props) {
                     .then(res => res.json())
                     .then((result) => {
                         props.history.push("/app")
+                        
                     })
                     .catch((err) => {
                       });

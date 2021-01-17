@@ -30,9 +30,18 @@ function App(props) {
         })
           .then((res) => res.json())
           .then((result) => {
-            setUser(result);
+            
+            if(result === null){
+              
+              Auth.logout()
+              props.history.push("/")
+            }else{
+              setUser(result);
+            }
+            
           })
           .catch((err) => {
+            console.log("xau")
             props.history.push("/");
           });
       } else {

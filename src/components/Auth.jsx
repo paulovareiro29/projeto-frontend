@@ -35,19 +35,19 @@ class Auth extends Component{
     }
 
     logout() {
-        cookies.remove('access_token')
+        cookies.remove('access_token',{path: '/app', domain: "localhost"})
         console.log("Logged out: token = " + this.getToken())
         return true
     }
 
     getToken() {
-        const token = cookies.get('access_token')
+        const token = cookies.get('access_token',{path: '/app', domain: "localhost"})
         console.log("GetToken: token = " + token)
         return token
     }
 
     setToken(token) {
-        cookies.set('access_token', token)
+        cookies.set('access_token', token, {path: '/app', domain: "localhost"})
         console.log("SetToken: token = " + token)
     }
 
