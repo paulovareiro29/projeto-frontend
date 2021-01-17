@@ -1,13 +1,8 @@
 import { React, useEffect, useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BiRefresh } from "react-icons/bi";
-import { Link } from "react-router-dom";
 import API from "../../../components/API";
 import Badge from "../../../components/Badge/Badge";
 import CreatePlanoForm from "../../../components/CreatePlanoForm/CreatePlanoForm";
-import Form from "../../../components/Form/Form";
-import SelectOption from "../../../components/Form/Inputs/Select/partials/SelectOption";
-import Select from "../../../components/Form/Inputs/Select/Select";
 import Loading from "../../../components/Loading/Loading";
 import Modal from "../../../components/Modal/Modal";
 import ModalHeader from "../../../components/Modal/partials/ModalHeader";

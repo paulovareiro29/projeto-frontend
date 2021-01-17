@@ -5,10 +5,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import './modal.css'
 
 export default function Modal({
-    title,
     isShowing,
     onRequestClose,
-    child,
     children
 }) {
 

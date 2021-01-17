@@ -25,7 +25,7 @@ export default function PlanosAtletaPage({user}) {
     }
 
     if (!planos && exerciciosDisponiveis) fetchPlanos();
-  }, [ planos, exerciciosDisponiveis]);
+  }, [ planos, exerciciosDisponiveis, user.id]);
 
  if (planos === null || exerciciosDisponiveis === null) {
     return <Loading />;

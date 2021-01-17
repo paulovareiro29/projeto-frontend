@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, useLocation } from "react-router-dom";
+import { Route} from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 import "./app.css";
@@ -54,6 +54,10 @@ function App(props) {
 
         <div className="content-wrapper">
           <div className="content">
+            <Route exact path="/app">
+              <Loading />
+            </Route>
+
             <Route path="/app/profile/:id">
               <Profile />
             </Route>

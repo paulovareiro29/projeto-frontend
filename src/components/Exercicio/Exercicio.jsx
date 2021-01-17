@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
-import { UserContext } from "../Context";
 import Form from "../Form/Form";
 import Input from "../Form/Inputs/Input";
 

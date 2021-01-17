@@ -59,10 +59,6 @@ class Auth extends Component{
         return true
     }
 
-    isAny() {
-        return (this.isAdmin() || this.isAtleta() || this.isTreinador())
-    }
-
 
 }
 

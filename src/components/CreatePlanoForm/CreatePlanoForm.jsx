@@ -4,7 +4,6 @@ import Form from "../Form/Form";
 import Input from "../Form/Inputs/Input";
 import SelectOption from "../Form/Inputs/Select/partials/SelectOption";
 import Select from "../Form/Inputs/Select/Select";
-import PlanoTreino from "../PlanoTreino/PlanoTreino";
 
 import "./createplanoform.css";
 

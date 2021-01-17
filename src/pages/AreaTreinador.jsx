@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 
 import '../styles/pages/areatreinador.css'
 import ExerciciosPage from "./treinador/exercicios/ExerciciosPage";
-import PlanosTreinadorPage from "./treinador/planos/PlanosTreinadorPage";
 
 export default function AreaTreinador(){
 
