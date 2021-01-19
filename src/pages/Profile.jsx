@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../components/API";
+import Auth from "../components/Auth";
 
 import Badge from "../components/Badge/Badge";
 import Button from "../components/Button/Button";
@@ -90,9 +91,9 @@ export default function Profile() {
     console.log(e.nome);
 
     //atribuir ID
-    await fetch(`http://localhost/projeto-backend/user/${id}`, {
+    await fetch(`${API.getURL()}/user/${id}`, {
       method: "PUT",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         //"username": info.username,
         //"pass": info.password,
@@ -117,7 +118,7 @@ export default function Profile() {
   const updatePassword = async (new_password) => {
     await fetch(`${API.getURL()}/user/${id}`, {
       method: "PUT",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         pass: new_password,
       }),

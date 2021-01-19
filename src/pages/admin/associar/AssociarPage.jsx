@@ -2,6 +2,7 @@ import { React, useEffect, useState } from "react";
 import { AiOutlineUserAdd, AiOutlineUserDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import API from "../../../components/API";
+import Auth from "../../../components/Auth";
 import Card from "../../../components/Card/Card";
 import Form from "../../../components/Form/Form";
 import SelectOption from "../../../components/Form/Inputs/Select/partials/SelectOption";
@@ -20,7 +21,7 @@ function AssociarComponent({ treinador, atletas, refresh }) {
   const dissociate = async (id) => {
     await fetch(`${API.getURL()}/user/dissociate`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         treinador_id: treinador.id,
         atleta_id: id,
@@ -39,7 +40,7 @@ function AssociarComponent({ treinador, atletas, refresh }) {
   const associate = async (data) => {
     await fetch(`${API.getURL()}/user/associate`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         treinador_id: treinador.id,
         atleta_id: data.atleta,
@@ -160,7 +161,7 @@ export default function AssociarPage() {
     const fetchTreinadores = async () => {
       await fetch(`${API.getURL()}/user/`, {
         method: "GET",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", token: Auth.getToken()  },
         mode: "cors",
       })
         .then((res) => res.json())

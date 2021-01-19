@@ -28,10 +28,10 @@ function Checkbox({ id, name, defaultChecked, props }) {
 
         console.log(roles)
         //change user role
-        await fetch(`http://localhost/projeto-backend/user/${id}`,
+        await fetch(`${API.getURL()}/user/${id}`,
             {
                 method: "PUT",
-                headers: { "content-type": "application/json" },
+                headers: { "content-type": "application/json", token: Auth.getToken()  },
                 body: JSON.stringify({
                     "admin": roles.admin,
                     "atleta": roles.atleta,

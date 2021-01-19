@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 import "./app.css";
@@ -20,28 +20,29 @@ function App(props) {
 
   useEffect(() => {
     async function fetchUser() {
-      let token = Auth.getToken()
+      let token = Auth.getToken();
 
       if (token) {
         await fetch(`${API.getURL()}/user/token/${token}`, {
           method: "GET",
-          headers: { "content-type": "application/json" },
+          headers: {
+            "content-type": "application/json",
+            token: Auth.getToken(),
+          },
           mode: "cors",
         })
           .then((res) => res.json())
           .then((result) => {
-            
-            if(result === null){
-              
-              Auth.logout()
-              props.history.push("/")
-            }else{
+            if (result === null) {
+              Auth.logout().then(() => {
+                props.history.push("/");
+              });
+            } else {
               setUser(result);
             }
-            
           })
           .catch((err) => {
-            console.log("xau")
+            console.log("xau");
             props.history.push("/");
           });
       } else {
@@ -49,7 +50,7 @@ function App(props) {
       }
     }
 
-    if(!user) fetchUser();
+    if (!user) fetchUser();
   }, [user, props.history]);
 
   if (user === null) return <Loading />;

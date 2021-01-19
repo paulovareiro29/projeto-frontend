@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import API from "../API";
+import Auth from "../Auth";
 import Form from "../Form/Form";
 import Input from "../Form/Inputs/Input";
 
@@ -14,10 +16,10 @@ export default function Exercicio({ exercicio, refresh, permission }) {
 
   const toggleDone = async () => {
     await fetch(
-      `http://localhost/projeto-backend/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
+      `${API.getURL()}/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
       {
         method: "PUT",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" , token: Auth.getToken() },
         body: JSON.stringify({
           realizado: !isDone,
         }),
@@ -32,10 +34,10 @@ export default function Exercicio({ exercicio, refresh, permission }) {
 
   const deleteExercise = async () => {
     await fetch(
-      `http://localhost/projeto-backend/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
+      `${API.getURL()}/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
       {
         method: "DELETE",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json" , token: Auth.getToken() },
         mode: "cors",
       }
     )
@@ -48,10 +50,10 @@ export default function Exercicio({ exercicio, refresh, permission }) {
 
   const saveExercise = async (data) => {
     await fetch(
-      `http://localhost/projeto-backend/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
+      `${API.getURL()}/plano/blocoexercicio/${exercicio.bloco_id}/${exercicio.exercicio_id}`,
       {
         method: "PUT",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", token: Auth.getToken()  },
         body: JSON.stringify({
           carga: data.carga,
           repeticoes: data.repeticoes,

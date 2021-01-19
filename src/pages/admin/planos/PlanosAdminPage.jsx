@@ -19,7 +19,7 @@ export default function PlanosAdminPage({ user }) {
   const createPlano = async (plano) => {
     await fetch(`${API.getURL()}/plano/`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         treinador_id: plano.treinador.id,
         nome: plano.nome,

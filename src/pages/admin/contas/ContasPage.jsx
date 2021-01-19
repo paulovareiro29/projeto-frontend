@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import API from "../../../components/API";
+import Auth from "../../../components/Auth";
 import Button from "../../../components/Button/Button";
 import Form from "../../../components/Form/Form";
 import Checkbox from "../../../components/Form/Inputs/Checkbox/Checkbox";
@@ -14,7 +15,7 @@ export default function ContasPage() {
   const addConta = async (data) => {
     await fetch(`${API.getURL()}/user/`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         username: data.username,
         pass: data.password,

@@ -19,7 +19,7 @@ function Landing(props) {
                 await fetch(`${API.getURL()}/user/token/${Auth.getToken()}`,
                     {
                         method: "GET",
-                        headers: { "content-type": "application/json" },
+                        headers: { "content-type": "application/json", token: Auth.getToken()  },
                         mode: 'cors'
                     })
                     .then(res => res.json())

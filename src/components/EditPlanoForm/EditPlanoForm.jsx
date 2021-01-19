@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from "react";
 import API from "../API";
+import Auth from "../Auth";
 import Form from "../Form/Form";
 import Input from "../Form/Inputs/Input";
 import SelectOption from "../Form/Inputs/Select/partials/SelectOption";
@@ -15,7 +16,7 @@ export default function EditPlanoForm({ callback, plano, admin }) {
     async function getTreinadores() {
       await fetch(`${API.getURL()}/user/`, {
         method: "GET",
-        headers: { "content-type": "application/json" },
+        headers: { "content-type": "application/json", token: Auth.getToken()  },
         mode: "cors",
       })
         .then((res) => res.json())

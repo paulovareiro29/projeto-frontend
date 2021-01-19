@@ -17,6 +17,7 @@ import "./planotreino.css";
 import { AiFillEdit, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import EditPlanoForm from "../EditPlanoForm/EditPlanoForm";
+import Auth from "../Auth";
 
 export default function PlanoTreino({
   defaultPlano = null,
@@ -48,7 +49,7 @@ export default function PlanoTreino({
   const getTreinador = async () => {
     await fetch(`${API.getURL()}/user/${plano.treinador.id}`, {
       method: "GET",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       mode: "cors",
     })
       .then((res) => res.json())
@@ -61,7 +62,7 @@ export default function PlanoTreino({
   const addAtleta = async (data) => {
     await fetch(`${API.getURL()}/plano/associate`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         plano_id: modalAddAtleta.plano.id,
         atleta_id: data.atleta,
@@ -78,7 +79,7 @@ export default function PlanoTreino({
   const deleteAtleta = async (data) => {
     await fetch(`${API.getURL()}/plano/dissociate`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         plano_id: modalDeleteAtleta.plano.id,
         atleta_id: data.atleta,
@@ -97,7 +98,7 @@ export default function PlanoTreino({
     setIsRefreshing(true);
     await fetch(`${API.getURL()}/plano/${plano.id}`, {
       method: "GET",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       mode: "cors",
     })
       .then((res) => res.json())
@@ -110,7 +111,7 @@ export default function PlanoTreino({
   const duplicate = async (data, treinador_id) => {
     await fetch(`${API.getURL()}/plano/duplicate`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         id: plano.id,
         treinador_id: treinador_id,
@@ -132,7 +133,7 @@ export default function PlanoTreino({
   const editPlano = async (data) => {
     await fetch(`${API.getURL()}/plano/${plano.id}`, {
       method: "PUT",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         treinador_id: data.treinador,
         nome: data.nome,
@@ -150,9 +151,9 @@ export default function PlanoTreino({
   };
 
   const addExercise = async (data) => {
-    await fetch(`http://localhost/projeto-backend/plano/${plano.id}/add`, {
+    await fetch(`${API.getURL()}/plano/${plano.id}/add`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: { "content-type": "application/json", token: Auth.getToken()  },
       body: JSON.stringify({
         dia: modal.dia,
         exercicio_id: data.exercicio,
