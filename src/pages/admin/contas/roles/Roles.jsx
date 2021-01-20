@@ -8,6 +8,7 @@ import Card from "../../../../components/Card/Card";
 import { HiUserAdd, HiUserRemove } from 'react-icons/hi'
 
 import './roles.css'
+import Auth from "../../../../components/Auth";
 
 
 function Checkbox({ id, name, defaultChecked, props }) {

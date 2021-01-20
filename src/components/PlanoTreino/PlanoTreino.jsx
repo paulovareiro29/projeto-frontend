@@ -14,10 +14,17 @@ import ModalHeader from "../Modal/partials/ModalHeader";
 import CreatePlanoForm from "../CreatePlanoForm/CreatePlanoForm";
 
 import "./planotreino.css";
-import { AiFillEdit, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import {
+  AiFillDelete,
+  AiFillEdit,
+  AiOutlineMinus,
+  AiOutlinePlus,
+} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import EditPlanoForm from "../EditPlanoForm/EditPlanoForm";
 import Auth from "../Auth";
+import ModalFooter from "../Modal/partials/ModalFooter";
+import Button from "../Button/Button";
 
 export default function PlanoTreino({
   defaultPlano = null,
@@ -34,6 +41,7 @@ export default function PlanoTreino({
   const [modal, setModal] = useState({ isShowing: false, dia: null });
   const [modalCopy, setModalCopy] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
 
   const [treinador, setTreinador] = useState(null);
 
@@ -49,7 +57,7 @@ export default function PlanoTreino({
   const getTreinador = async () => {
     await fetch(`${API.getURL()}/user/${plano.treinador.id}`, {
       method: "GET",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       mode: "cors",
     })
       .then((res) => res.json())
@@ -62,7 +70,7 @@ export default function PlanoTreino({
   const addAtleta = async (data) => {
     await fetch(`${API.getURL()}/plano/associate`, {
       method: "POST",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       body: JSON.stringify({
         plano_id: modalAddAtleta.plano.id,
         atleta_id: data.atleta,
@@ -79,7 +87,7 @@ export default function PlanoTreino({
   const deleteAtleta = async (data) => {
     await fetch(`${API.getURL()}/plano/dissociate`, {
       method: "POST",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       body: JSON.stringify({
         plano_id: modalDeleteAtleta.plano.id,
         atleta_id: data.atleta,
@@ -98,7 +106,7 @@ export default function PlanoTreino({
     setIsRefreshing(true);
     await fetch(`${API.getURL()}/plano/${plano.id}`, {
       method: "GET",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       mode: "cors",
     })
       .then((res) => res.json())
@@ -111,7 +119,7 @@ export default function PlanoTreino({
   const duplicate = async (data, treinador_id) => {
     await fetch(`${API.getURL()}/plano/duplicate`, {
       method: "POST",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       body: JSON.stringify({
         id: plano.id,
         treinador_id: treinador_id,
@@ -133,7 +141,7 @@ export default function PlanoTreino({
   const editPlano = async (data) => {
     await fetch(`${API.getURL()}/plano/${plano.id}`, {
       method: "PUT",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       body: JSON.stringify({
         treinador_id: data.treinador,
         nome: data.nome,
@@ -145,15 +153,28 @@ export default function PlanoTreino({
     })
       .then((res) => res.json())
       .then((res) => {
-        setModalEdit(false)
-        refresh()
+        setModalEdit(false);
+        refresh();
       });
   };
+
+  const deletePlano = async () => {
+    await fetch(`${API.getURL()}/plano/${plano.id}`, {
+      method: "DELETE",
+      headers: { "content-type": "application/json", token: Auth.getToken() },
+      mode: "cors",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setModalDelete(false);
+        refresh();
+      });
+  }
 
   const addExercise = async (data) => {
     await fetch(`${API.getURL()}/plano/${plano.id}/add`, {
       method: "POST",
-      headers: { "content-type": "application/json", token: Auth.getToken()  },
+      headers: { "content-type": "application/json", token: Auth.getToken() },
       body: JSON.stringify({
         dia: modal.dia,
         exercicio_id: data.exercicio,
@@ -171,6 +192,8 @@ export default function PlanoTreino({
         refresh();
       });
   };
+
+
 
   const arrayBlocos = () => {
     let e = []; //array de exercicios
@@ -272,16 +295,28 @@ export default function PlanoTreino({
                     )}
                     {user.treinador_id === plano.treinador.id ||
                     user.roles.admin ? (
-                      <span
-                        className="plano-edit-btn"
-                        onClick={() => {
-                          setModalEdit(true);
-                        }}
-                      >
-                        <Badge>
-                          <AiFillEdit />
-                        </Badge>
-                      </span>
+                      <>
+                        <span
+                          className="plano-edit-btn"
+                          onClick={() => {
+                            setModalEdit(true);
+                          }}
+                        >
+                          <Badge>
+                            <AiFillEdit />
+                          </Badge>
+                        </span>
+                        <span
+                          className="plano-delete-btn"
+                          onClick={() => {
+                            setModalDelete(true);
+                          }}
+                        >
+                          <Badge type="error">
+                            <AiFillDelete />
+                          </Badge>
+                        </span>
+                      </>
                     ) : (
                       ""
                     )}
@@ -462,6 +497,34 @@ export default function PlanoTreino({
                     plano={plano}
                   />
                 )}
+              </Modal>
+            ) : (
+              ""
+            )}
+
+            {modalDelete ? (
+              <Modal
+                isShowing={modalDelete}
+                onRequestClose={() => {
+                  setModalDelete(false);
+                }}
+              >
+                <ModalHeader>Eliminar plano</ModalHeader>
+
+                <span>
+                  Tem a certeza que pretende eliminar o plano de treino?
+                </span>
+
+                <ModalFooter>
+                  <div style={{ marginTop: "5px" }}>
+                    <Button
+                      title="Eliminar"
+                      styleType="primary"
+                      expanded
+                      onClick={() => {deletePlano()}}
+                    />
+                  </div>
+                </ModalFooter>
               </Modal>
             ) : (
               ""

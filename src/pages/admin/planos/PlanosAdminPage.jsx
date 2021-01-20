@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { BiRefresh } from "react-icons/bi";
 import API from "../../../components/API";
+import Auth from "../../../components/Auth";
 import Badge from "../../../components/Badge/Badge";
 import CreatePlanoForm from "../../../components/CreatePlanoForm/CreatePlanoForm";
 import Loading from "../../../components/Loading/Loading";

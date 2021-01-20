@@ -69,7 +69,8 @@
 }
 
 .plano-component .plano-wrapper .plano-copy-btn,
-.plano-component .plano-wrapper .plano-edit-btn {
+.plano-component .plano-wrapper .plano-edit-btn,
+.plano-component .plano-wrapper .plano-delete-btn{
   cursor: pointer;
   font-size: 20px;
   margin: 0px 5px;

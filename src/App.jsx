@@ -14,6 +14,7 @@ import Auth from "./components/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AreaAtleta from "./pages/AreaAtleta";
 import Planos from "./pages/Planos";
+import Home from "./pages/Home";
 
 function App(props) {
   const [user, setUser] = useState(null);
@@ -65,7 +66,7 @@ function App(props) {
         <div className="content-wrapper">
           <div className="content">
             <Route exact path="/app">
-              <Loading />
+              <Home />
             </Route>
 
             <Route path="/app/profile/:id">

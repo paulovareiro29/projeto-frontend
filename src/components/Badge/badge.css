@@ -21,3 +21,8 @@
     background: #C0C0C0;
     color: #ffffff;
 }
+
+.badge.error {
+    background: #d52f2f;
+    color: #ffffff;
+}
