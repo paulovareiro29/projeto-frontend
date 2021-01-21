@@ -30,8 +30,8 @@ export default function Sidebar() {
                                 <SidebarItem icon={CgProfile} title="Perfil" to={"/app/profile/" + user.id} />
                             </SidebarMenu>
 
-                            <SidebarMenu title="Area Principal">
-                                <SidebarItem icon={CgGym} title="Treino" permission={(user.roles.atleta || user.roles.treinador)}>
+                            <SidebarMenu title="Area Principal" permission={(user.roles.atleta || user.roles.treinador || user.roles.admin)}>
+                                <SidebarItem icon={CgGym} title="Treino" permission={(user.roles.atleta || user.roles.treinador || user.roles.admin)}>
                                     {/* PARA ATLETAS */}
                                     <SidebarSubItem title="Planos de treino"  to="/app/planos" permission={user.roles.atleta || user.roles.treinador || user.roles.admin} />
 
